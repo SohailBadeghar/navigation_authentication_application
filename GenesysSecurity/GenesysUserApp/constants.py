@@ -51,6 +51,21 @@ PILLAR = 'pillar'
 GATE = 'gate'
 WATERBODIES = 'waterbodies'
 AOI = 'aoi'
+CENTER_LINE = 'center_line'
+AREA = 'area'
+CENTRE_LINE = 'centre_line'
+CITY = 'city'
+CONDITION = 'condition'
+FLYOVER = 'flyover'
+JUNCTION = 'junction'
+METRO = 'metro'
+QC = 'qc'
+ROAD = 'road'
+STREET_NAME = 'street_name'
+SUB = 'sub'
+ULU = 'ulu'
+VILLAGE = 'village'
+WARD = 'ward'
 
 TABLE_ALIAS_LIST = [
     (DASH, '----------'),
@@ -73,5 +88,20 @@ TABLE_ALIAS_LIST = [
     (GATE, 'gate'),
     (WATERBODIES, 'waterbodies'),
     (AOI, 'aoi'),
+    (CENTER_LINE, 'center_line'),
+    (AREA, 'area'),
+    (CENTRE_LINE, 'centre_line'),
+    (CITY, 'city'),
+    (CONDITION, 'condition'),
+    (FLYOVER, 'flyover'),
+    (JUNCTION, 'junction'),
+    (METRO, 'metro'),
+    (QC, 'qc'),
+    (ROAD, 'road'),
+    (STREET_NAME, 'street_name'),
+    (SUB, 'sub'),
+    (ULU, 'ulu'),
+    (VILLAGE, 'village'),
+    (WARD, 'ward')
 ]
 
