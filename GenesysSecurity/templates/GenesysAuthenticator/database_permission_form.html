@@ -12,8 +12,7 @@
             <h2 class="text-white mb-4"><b>Create Database Permission</b></h2>
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn" style="background-color: #000; color: #fff; border: 1px solid #ccc;">Grant permission</button> <br> <br>
-            <div class="info warning text-black" style="background-color: #ffe0b2; border-left: 6px solid #ff9800; color: black;">
+              <div class="info warning text-black" style="background-color: #ffe0b2; border-left: 6px solid #ff9800; color: black;">
                 <p>
                   <strong>Note:</strong>
                 </p>
@@ -22,6 +21,7 @@
                   <li><strong>For readonly access:</strong> Select "Db access" and "Privilege select" only.</li>
                 </ul>
             </div>
+            <button type="submit" class="btn" style="background-color: #000; color: #fff; border: 1px solid #ccc;">Grant permission</button> <br> <br>
 
              {% if result_sets %}
               <div>
