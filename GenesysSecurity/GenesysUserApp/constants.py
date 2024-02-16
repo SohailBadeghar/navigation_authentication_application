@@ -51,9 +51,8 @@ PILLAR = 'pillar'
 GATE = 'gate'
 WATERBODIES = 'waterbodies'
 AOI = 'aoi'
-CENTER_LINE = 'center_line'
+CENT = 'cent'
 AREA = 'area'
-CENTRE_LINE = 'centre_line'
 CITY = 'city'
 CONDITION = 'condition'
 FLYOVER = 'flyover'
@@ -88,9 +87,8 @@ TABLE_ALIAS_LIST = [
     (GATE, 'gate'),
     (WATERBODIES, 'waterbodies'),
     (AOI, 'aoi'),
-    (CENTER_LINE, 'center_line'),
+    (CENT, 'cent'),
     (AREA, 'area'),
-    (CENTRE_LINE, 'centre_line'),
     (CITY, 'city'),
     (CONDITION, 'condition'),
     (FLYOVER, 'flyover'),
