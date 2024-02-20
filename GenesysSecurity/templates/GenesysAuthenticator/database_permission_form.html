@@ -1,42 +1,98 @@
 {% extends 'base/base.html' %}
 
 {% block content %}
-  <div class="container mt-5">
+<div class="container mt-5">
     <div class="col-md-6 offset-md-3">
-      <div class="card">
-        <!-- Add background image to card -->
-        <img src="https://images.pexels.com/photos/1051077/pexels-photo-1051077.jpeg?auto=compress&cs=tinysrgb&w=600" class="card-img" alt="GIS Map Background" style="background-size: cover; height: 100%; width: 100%;">
+        <div class="card">
+            <!-- Add background image to card -->
+            <img src="https://images.pexels.com/photos/1051077/pexels-photo-1051077.jpeg?auto=compress&cs=tinysrgb&w=600"
+                class="card-img" alt="GIS Map Background" style="background-size: cover; height: 100%; width: 100%;">
 
-        <div class="card-img-overlay d-flex justify-content-center align-items-center">
-          <form method="post" enctype="multipart/form-data" class="form" style="background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 10px; color: white; text-align: center;">
-            <h2 class="text-white mb-4"><b>Create Database Permission</b></h2>
-            {% csrf_token %}
-            {{ form.as_p }}
-              <div class="info warning text-black" style="background-color: #ffe0b2; border-left: 6px solid #ff9800; color: black;">
-                <p>
-                  <strong>Note:</strong>
-                </p>
-                <ul>
-                  <li><strong>To enable users to perform edit/update/delete operations:</strong> Please select all checkboxes.</li>
-                  <li><strong>For readonly access:</strong> Select "Db access" and "Privilege select" only.</li>
-                </ul>
+            <div class="card-img-overlay d-flex justify-content-center align-items-center">
+                <form method="post" enctype="multipart/form-data" class="form" id="grantPermissionForm"
+                    style="background-color: rgba(0, 0, 0, 0.6); padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                    <h2 class="text-white mb-4"><b>Create Database Permission</b></h2>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <div class="info warning text-black"
+                        style="background-color: #ffe0b2; border-left: 6px solid #ff9800; color: black;">
+                        <p>
+                            <strong>Note:</strong>
+                        </p>
+                        <ul>
+                            <li><strong>To enable users to perform edit/update/delete operations:</strong> Please select
+                                all checkboxes.</li>
+                            <li><strong>For readonly access:</strong> Select "Db access" and "Privilege select" only.
+                            </li>
+                        </ul>
+                    </div>
+                    <button type="submit" class="btn"
+                        style="background-color: #000; color: #fff; border: 1px solid #ccc;">Grant permission</button>
+                    <br> <br>
+
+                    {% if result_sets %}
+                    <div>
+                        <h3>Result Sets:</h3>
+                        <ul>
+                            {% for result_set in result_sets %}
+                            <li>{{ result_set }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endif %}
+
+                </form>
             </div>
-            <button type="submit" class="btn" style="background-color: #000; color: #fff; border: 1px solid #ccc;">Grant permission</button> <br> <br>
-
-             {% if result_sets %}
-              <div>
-                <h3>Result Sets:</h3>
-                <ul>
-                  {% for result_set in result_sets %}
-                    <li>{{ result_set }}</li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% endif %}
-
-          </form>
         </div>
-      </div>
     </div>
-  </div>
+</div>
+
+<script>
+    // JavaScript for form validation
+    document.getElementById('grantPermissionForm').addEventListener('submit', function(event) {
+        var userField = document.getElementById('id_user');
+        var databaseField = document.getElementById('id_database');
+        var schemaField = document.getElementById('id_schema');
+        var tableAliasField = document.getElementById('id_table_alias');
+        var permissionFields = document.querySelectorAll('[name^="privilege_"]');
+
+        // Define error messages
+        var errorMessages = {
+            'privilege': 'Your missing something to select ,Please select Schema ,Table alis and select one permission.'
+        };
+
+        // Check if mandatory fields are selected
+        if (!userField.value) {
+            alert(errorMessages['id_user']);
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+
+        if (!databaseField.value) {
+            alert(errorMessages['id_database']);
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+
+        if (!tableAliasField.value) {
+            alert(errorMessages['id_table_alias']);
+            event.preventDefault(); // Prevent form submission
+            return;
+        }
+
+        // Check if at least one permission is selected
+        var permissionSelected = false;
+        for (var j = 0; j < permissionFields.length; j++) {
+            if (permissionFields[j].checked) {
+                permissionSelected = true;
+                break; // Exit loop once a permission is found
+            }
+        }
+
+        if (!permissionSelected) {
+            alert(errorMessages['privilege']);
+            event.preventDefault(); // Prevent form submission
+        }
+    });
+</script>
 {% endblock %}

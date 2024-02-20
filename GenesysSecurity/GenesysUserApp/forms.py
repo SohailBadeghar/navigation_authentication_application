@@ -21,6 +21,11 @@ class RegistrationForm(UserCreationForm):
             'designation': forms.Select(choices=DESIGNATION_CHOICES),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field_name in self.fields:
+            self.fields[field_name].required = True
+
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")
         password2 = self.cleaned_data.get("password2")

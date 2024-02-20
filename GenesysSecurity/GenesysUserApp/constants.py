@@ -65,6 +65,7 @@ SUB = 'sub'
 ULU = 'ulu'
 VILLAGE = 'village'
 WARD = 'ward'
+PNR = 'pnr'
 
 TABLE_ALIAS_LIST = [
     (DASH, '----------'),
@@ -100,6 +101,7 @@ TABLE_ALIAS_LIST = [
     (SUB, 'sub'),
     (ULU, 'ulu'),
     (VILLAGE, 'village'),
-    (WARD, 'ward')
+    (WARD, 'ward'),
+    (PNR, 'pnr')
 ]
 

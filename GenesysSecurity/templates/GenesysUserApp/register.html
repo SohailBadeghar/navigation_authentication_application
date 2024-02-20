@@ -30,4 +30,11 @@
       </div>
     </div>
   </div>
+ <!-- JavaScript for transforming emp_id field to uppercase -->
+  <script>
+    // Function to transform emp_id field to uppercase
+    document.getElementById("id_emp_id").addEventListener("change", function() {
+      this.value = this.value.toUpperCase();
+    });
+  </script>
 {% endblock %}
