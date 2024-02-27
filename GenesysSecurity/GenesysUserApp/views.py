@@ -189,7 +189,7 @@ class UserListView(View):
                 Q(designation__icontains=query)
             )
 
-        paginator = Paginator(users_list, 5)  # Show 5 users per page
+        paginator = Paginator(users_list, 10)  # Show 5 users per page
 
         page_number = request.GET.get('page')
         users = paginator.get_page(page_number)
