@@ -25,7 +25,7 @@ def create_user_in_database(username, password, db_server, db_port, db_username,
         with psycopg2.connect(**connection_params) as conn, conn.cursor() as cursor:
             # Call the first stored procedure
             try:
-                cursor.callproc(f'{schema_name}.{count_and_insert_initial_users}', [db_server])
+                cursor.callproc(f'{schema_name}.{count_and_insert_initial_users}', [db_server, username])
                 result_first_proc = cursor.fetchone()
                 status_code = int(result_first_proc[0].split(':')[0])
                 if status_code != 200:
@@ -49,7 +49,7 @@ def create_user_in_database(username, password, db_server, db_port, db_username,
 
             # Call the third stored procedure
             try:
-                cursor.callproc(f'{schema_name}.{count_and_compare_users}', [db_server])
+                cursor.callproc(f'{schema_name}.{count_and_compare_users}', [db_server, username])
                 result_third_proc = cursor.fetchone()
                 status_code = int(result_third_proc[0].split(':')[0])
                 if status_code == 200:

@@ -3,6 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .constants import DESIGNATION_CHOICES
 from .models import UserDetails
 from GenesysAuthenticator.models import *
+from django.contrib.auth.forms import SetPasswordForm
 
 
 class RegistrationForm(UserCreationForm):
@@ -46,7 +47,16 @@ class RegistrationForm(UserCreationForm):
         return user
 
 
+class CustomPasswordResetForm(SetPasswordForm):
+    emp_id = forms.CharField(max_length=255, required=True)  # Making emp_id compulsory
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Set required attribute to True for each field
+        for field_name, field in self.fields.items():
+            field.required = True
 
-
-
+    def clean_emp_id(self):
+        emp_id = self.cleaned_data['emp_id']
+        # Add any custom validation logic for emp_id here
+        return emp_id

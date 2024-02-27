@@ -76,7 +76,11 @@ class GrantPermissionView(View):
         # Render the form with error messages
         return render(request, self.template_name, {'form': form})
 
+
 @login_required
+@designation_required('Senior Vice President - Projects', 'Vice President',
+                      'General Manager Projects', 'Senior Project Manager',
+                      'Program Manager', 'Team Manager', 'Manager')
 def get_schema_table_col_from_server(request):
     if request.method == 'POST':
 
